@@ -100,7 +100,7 @@ struct node* insert(struct node* start, int value, int pos)
 	}
 	else
 	{
-		for(i=0; i<pos; i++)
+		for(i=1; i<pos; i++)
 		{
 			ptr=ptr->next;
 		}
