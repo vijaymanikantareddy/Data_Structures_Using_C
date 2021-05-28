@@ -6,11 +6,11 @@ struct node
 	struct node * next;
 };
 struct node * start=NULL;
-struct node * createll(struct node*);
+struct node * createll(struct node*, int);
 void display(struct node*);
 void main()
 {
-	int option;
+	int option,iter;
 	do
     {
     	printf("\n\n***MAIN MENU***");
@@ -22,7 +22,9 @@ void main()
     	switch(option)
     	{
     		case 1:
-    			start=createll(start);
+    			printf("enter the size of list :");
+				scanf("%d",&iter);
+    			start=createll(start,iter);
     			printf("\n linked list is created");
     			break;
     	    case 2:
@@ -32,15 +34,13 @@ void main()
 	}while(option != 3);
 	
 }
-struct node * createll(struct node*start)
+struct node * createll(struct node*start, int iter)
 {
 	struct node*newnode,*ptr;
-	int iter,i,n;
-	printf("enter the size of list :");
-	scanf("%d",&iter);
+	int i,n;
+	printf("enter %d elements: ",iter);
 	for(i=0; i<iter ; i++)
 	{
-		printf("\n enter the data:");
 		newnode=(struct node*)malloc(sizeof(struct node));
 		scanf("%d",&n);;
 		if(start==NULL)
