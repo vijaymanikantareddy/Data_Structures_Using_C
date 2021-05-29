@@ -17,7 +17,7 @@ void main()
     	printf("\n\n***MAIN MENU***");
     	printf("\nenter 1 : To create list.");
     	printf(" \nenter 2 : To display a list.");
-    	printf("\nenter 3: To delete");
+    	printf("\nenter 3: To delete a Node.");
     	printf("\nenter 4 : To exit.");
     	printf("\nenter the option :");
     	scanf("%d",&option);
@@ -98,4 +98,6 @@ struct node* delete(struct node* start, int pos)
     ptr=preptr->next;
     preptr->next=ptr->next;
     return start;
+    free(ptr);
+    free(preptr);
 }
