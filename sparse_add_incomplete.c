@@ -21,7 +21,7 @@ void main()
 	int i,j,m,n,option;
 	printf("enter the row size and column size: ");
 	scanf("%d %d",&m,&n);
-	int a[m][n], b[m][n], c[m][n];
+	int a[m][n], b[m][n];
 	do
     {
     	printf("\n\n***MAIN MENU***");
@@ -47,27 +47,27 @@ void main()
 							start1= create_sll(start1, i, j, a[i][j]);
     			printf("\n linked list is created");
     			break;
-    	    case 2:
+    	   	 case 2:
 			    display(start1);
 			    break;
-			case 3:
+		case 3:
     			printf("enter the matrix 2 elements: ");
 				for(i=0;i<m;i++)
 					for(j=0;j<n;j++)
 						scanf("%d",&b[i][j]);
     			for(i=0;i<m;i++)
 					for(j=0;j<n;j++)
-						if(a[i][j]!=0)
+						if(b[i][j]!=0)
 							start2= create_sll(start2, i, j, b[i][j]);
     			printf("\n linked list is created");
     			break;
-			case 4:
+		case 4:
 			    display(start2);
 			    break;	
-			case 5: 
+		case 5: 
 					start3=add_mat(start1, start2, start3);
 					break;
-			case 6:
+		case 6:
 					display(start3);
 					break;			 
 		}
