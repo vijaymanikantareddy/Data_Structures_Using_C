@@ -12,9 +12,10 @@ struct node* start1= NULL;
 struct node* start2= NULL;
 struct node* start3= NULL;
 struct node* create_sll(struct node* start, int row, int column, int val );
-struct node* add_mat(struct node*, struct node*, struct node*);
+struct node* add_mat(struct node* start1, struct node* start2, struct node* start3);
 struct node* add_val(struct node* start3, int, int, int);
 void display(struct node* start);
+void display_mat(struct node*, int , int );
 
 void main()
 {
@@ -47,10 +48,10 @@ void main()
 							start1= create_sll(start1, i, j, a[i][j]);
     			printf("\n linked list is created");
     			break;
-    	   	 case 2:
+    	    case 2:
 			    display(start1);
 			    break;
-		case 3:
+			case 3:
     			printf("enter the matrix 2 elements: ");
 				for(i=0;i<m;i++)
 					for(j=0;j<n;j++)
@@ -61,14 +62,18 @@ void main()
 							start2= create_sll(start2, i, j, b[i][j]);
     			printf("\n linked list is created");
     			break;
-		case 4:
+			case 4:
 			    display(start2);
 			    break;	
-		case 5: 
+			case 5: 
 					start3=add_mat(start1, start2, start3);
+					printf("\nLinkedlist is created");
 					break;
-		case 6:
+			case 6:
+					printf("\nAddition Matrix in Linked List\n");
 					display(start3);
+					printf("\nAddition Matrix in Matrix Form\n");
+					display_mat(start3, m, n);
 					break;			 
 		}
 	}while(option != 7);
@@ -100,27 +105,25 @@ struct node* create_sll(struct node* start, int r, int c, int v)
 void display(struct node* start)
 {
 	struct node* ptr=start;
-	printf("row   : ");
+	printf("\nRow   : ");
 	while(ptr!=NULL)
 	{
 		printf("%d ",ptr->row);
 		ptr=ptr->next;
 	}
-	printf("\n");
 	ptr=start;
-	printf("column: ");
+	printf("\nColumn: ");
 	while(ptr!=NULL)
 	{
 		printf("%d ",ptr->column);
-		ptr=ptr->next;
+		ptr = ptr->next;
 	}
-	printf("\n");
-	ptr=start;
-	printf("values: ");
-	while(ptr!=NULL)
+	ptr = start;
+	printf("\nValues: ");
+	while(ptr != NULL)
 	{
 		printf("%d ",ptr->val);
-		ptr=ptr->next;
+		ptr = ptr->next;
 	}
 }
 
@@ -133,31 +136,41 @@ struct node* add_mat(struct node* start1, struct node* start2, struct node* star
 	{
 		if(a->row == b->row && a->column == b->column )
 		{
-			sum=a->val + b->val;
-			start3=add_val(start3, sum, a->row, a->column );
-			a=a->next;
-			b=b->next;
+			sum = a->val + b->val;
+			start3 = add_val(start3, sum, a->row, a->column );
+			a = a->next;
+			b = b->next;
 		}
 		else if(a->row == b->row && a->column < b->column )
 		{
-			start3=add_val(start3, a->val, a->row, a->column );
-			a=a->next;
+			start3 = add_val(start3, a->val, a->row, a->column );
+			a = a->next;
 		}
 		else if(a->row == b->row && b->column < a->column )
 		{
-			start3=add_val(start3 , b->val, b->row , b->column );
-			b=b->next;
+			start3 = add_val(start3 , b->val, b->row , b->column );
+			b = b->next;
+		}
+		else if(a->row < b->row)
+		{
+			start3 = add_val(start3, a->val, a->row, a->column );
+			a = a->next;
+		}
+		else 
+		{
+			start3 = add_val(start3, b->val, b->row, b->column );
+			b = b->next;
 		}
 	}
-	if(a==NULL)
+	if(a == NULL)
 	{
 		while(b != NULL)
 		{
-			start3= add_val(start3, b->val, b->row, b->column );
-			b=b->next;
+			start3 = add_val(start3, b->val, b->row, b->column );
+			b = b->next;
 		}
 	}
-	if(b==NULL)
+	if(b == NULL)
 	{
 		while(a != NULL)
 		{
@@ -172,12 +185,12 @@ struct node* add_val(struct node* start3, int sum, int r, int c)
 {
 	struct node *ptr, *newnode;
 	newnode=(struct node*)malloc(sizeof(struct node));
-	newnode->row=r;
-	newnode->column=c;
-	newnode->val=sum;
-	if(start3== NULL)
+	newnode->row = r;
+	newnode->column = c;
+	newnode->val = sum;
+	if(start3 == NULL)
 	{
-		newnode->next=NULL;
+		newnode->next = NULL;
 		start3=newnode;
 	}
 	else
@@ -189,4 +202,32 @@ struct node* add_val(struct node* start3, int sum, int r, int c)
 		ptr->next= newnode;	
 	}
 	return start3;
+}
+
+void display_mat(struct node* start3, int m, int n)
+{
+	struct node* ptr=start3;
+	int i, j, c[m][n];
+	for(i=0 ; i<m ; i++)
+	{
+		for(j=0 ; j<n ; j++)
+		{
+			if(ptr!=NULL)
+			{
+				if(i==ptr->row && j==ptr->column )
+				{
+					c[i][j]=ptr->val;
+				}
+				else 
+				c[i][j]=0;
+			}
+		}
+		ptr=ptr->next;
+	}
+	for(i=0 ; i<m ; i++)
+	{
+		for(j=0 ; j<n ; j++)
+			printf("%d ",c[i][j]);
+		printf("\n");	
+	}
 }
