@@ -178,7 +178,7 @@ struct node* add_val(struct node* start3, int sum, int r, int c)
 	if(start3== NULL)
 	{
 		newnode->next=NULL;
-		start=newnode;
+		start3=newnode;
 	}
 	else
 	{
