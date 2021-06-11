@@ -32,7 +32,7 @@ int fibonacci(int arr[], int x, int n)
 	}
 	if(fbm1 && arr[offset+1]==x)
 		return offset+1;
-	return -1;	
+	return -1;	 
 }
 void main()
 {
