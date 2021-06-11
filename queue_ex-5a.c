@@ -30,7 +30,7 @@ void main()
 		printf("\n Enter your option: ");
 		scanf("%d",&option);
 		switch(option)
-		{
+		{ 
 			case 1:
 				enqueue();
 				break;
