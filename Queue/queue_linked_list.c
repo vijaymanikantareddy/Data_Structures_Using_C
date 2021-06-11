@@ -56,8 +56,10 @@ void main()
 			case 5:
 				front = display(front);
  				break;
+			default:
+				printf("enter correct option!");
  		}
-	}while(option > 0 && option < 6);
+	}while(option !=6);
 }
 
 // this function is used to insert an element in to a queue
