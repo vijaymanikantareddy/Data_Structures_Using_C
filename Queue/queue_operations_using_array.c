@@ -1,21 +1,22 @@
 /* C program that implement Queue (its operations) using arrays. */
 #include<stdio.h>
 #include<stdbool.h>
-#define MAX 10
 
-int queue[MAX];
 int front=-1, rear=-1;
 
-void enqueue(void);
-int dequeue(void);
-int peek(void);
-bool isEmpty(void);
-bool isFull(void);
-void display(void);
+void enqueue(int n, int arr[*]);
+int dequeue(int n, int arr[*]);
+int peek(int n, int arr[*]);
+bool isEmpty(int n, int arr[*]);
+bool isFull(int n, int arr[*]);
+void display(int n, int arr[*]);
 
 void main()
 {
-	int option,val;
+	int option,val,MAX;
+	printf("enter the size of array: ");
+	scanf("%d",&MAX);
+	int queue[MAX];
 	bool x;
 	do
 	{
@@ -32,34 +33,34 @@ void main()
 		switch(option)
 		{ 
 			case 1:
-				enqueue();
+				enqueue(MAX, queue);
 				break;
 			case 2:
-				val=dequeue();
+				val=dequeue(MAX, queue);
 				if(val != -1)
 					printf("\n the number deleted is : %d",val);
 				break;
 			case 3:
-				val=peek();	
+				val=peek(MAX, queue);	
 				if(val != -1)
 					printf("\n the first value in queue is : %d",queue[val]);
 				break;
 			case 4:
-				x=isEmpty();
+				x=isEmpty(MAX, queue);
 				if(x==true)
 					printf("\n the queue is empty");
 				else
 					printf("\n the queue is not empty");
 				break;
 			case 5:
-				x=isFull();
+				x=isFull(MAX, queue);
 				if(x==true)
 					printf("\n the queue is Full");
 				else
 					printf("\n the queue is not Full");
 				break;
 			case 6:
-				display();
+				display(MAX, queue);
 				break;
 			default:
 				printf("enter correct option!");
@@ -67,7 +68,7 @@ void main()
 	}while(option != 7);
 }
 //this function is used to insert an element into queue.
-void enqueue()
+void enqueue(int MAX, int queue[MAX])
 {
 	int num;
 	printf("\n enter the number to be inserted in the queue: ");
@@ -82,7 +83,7 @@ void enqueue()
 }
 
 // this function is used to delete an element from a queue.
-int dequeue()
+int dequeue(int MAX, int queue[MAX])
 {
 	int val;
 	if(front == -1 || front > rear)
@@ -101,7 +102,7 @@ int dequeue()
 }
 
 //this function is used to print the front element of the queue
-int peek()
+int peek(int MAX, int queue[MAX])
 {
 	if(front == -1 || front > rear)
 	{
@@ -113,7 +114,7 @@ int peek()
 }
 
 //this function is used to check the queue is empty or not.
-bool isEmpty()
+bool isEmpty(int MAX, int queue[MAX])
 {
 	if(front==-1 || front > rear)
 		return true;
@@ -122,7 +123,7 @@ bool isEmpty()
 }
 
 // this function is used to check the queue is full or not.
-bool isFull()
+bool isFull(int MAX, int queue[MAX])
 {
 	if(rear == MAX-1)
 		return true;
@@ -131,7 +132,7 @@ bool isFull()
 }
 
 // this function is used to display the element of the queue
-void display()
+void display(int MAX, int queue[MAX])
 {
 	int i;
 	if(front == -1 || front >rear)
