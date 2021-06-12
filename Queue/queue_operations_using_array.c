@@ -61,8 +61,10 @@ void main()
 			case 6:
 				display();
 				break;
+			default:
+				printf("enter correct option!");
 		}
-	}while(option > 0 && option <6);
+	}while(option != 7);
 }
 //this function is used to insert an element into queue.
 void enqueue()
