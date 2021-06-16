@@ -1,4 +1,3 @@
-// C program that implement stack (its operations) using arrays
 #include <stdio.h>
 int top=-1;
 
@@ -16,10 +15,10 @@ void main( )
 	do
 	{
 		printf("\n *****MAIN MENU*****");
-		printf("\n 1. PUSH");
-		printf("\n 2. POP");
-		printf("\n 3. PEEK");
-		printf("\n 4. DISPLAY");
+		printf("\n 1. Push");
+		printf("\n 2. Pop");
+		printf("\n 3. Peek");
+		printf("\n 4. Display");
 		printf("\n 5. EXIT");
 		printf("\n Enter your option: ");
 		scanf("%d", &option);
